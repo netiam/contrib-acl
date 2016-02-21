@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "quotes": [
+      2,
+      "single"
+    ],
+    "semi": [
+      2,
+      "never"
+    ]
+  },
+  "env": {
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "parser": "babel-eslint"
+}

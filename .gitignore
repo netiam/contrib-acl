@@ -1,0 +1,17 @@
+# System
+.DS_Store
+
+# IDE
+.idea
+
+# node.js
+npm-debug.log
+node_modules/
+
+# lib
+coverage/
+lib/
+
+# test
+test/db.sqlite
+
