@@ -90,7 +90,7 @@ defined on resource level (e.g. in a special section `asserts` within the `resou
  * @param {object} [...parameters={}]
  * @returns {Promise<boolean>} Returns true, if and only if authenticated user owns document
  */
-function owner(document, acl, resource, role, privilege, ...parameters) {
+function owner(document, user, acl, resource, role, privilege, ...parameters) {
   const {ownerField} = parameters
   return Promise.resolve(user.id === document[ownerField])
 )
