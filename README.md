@@ -32,7 +32,7 @@ function(config) {
    * @param {string} resource The resource you want to check access rights
    * @param {string} privilege The privilege level (either one of `create`, `read`, `update` or `delete`)
    * @param {object[]} [asserts=[]] An optional list of assertions (e.g. `owner`)
-   * @returns {boolean} Returns `true`, if and only if ACL has a rule which allows access (whitelist)
+   * @returns {Promise<boolean>} Returns `true`, if and only if ACL has a rule which allows access (whitelist)
    */
   function allowed(resource, privilege, asserts) {…}
 
@@ -42,7 +42,7 @@ function(config) {
    * @param {object} document The document you want to filter
    * @param {string} privilege The privilege level (either one of `create`, `read`, `update` or `delete`)
    * @param {object[]} [asserts=[]] An optional list of assertions (e.g. `owner`)
-   * @returns {object} Returns a filtered object or an empty object if access has been denied for all properties
+   * @returns {Promise<object>} Returns a filtered object or an empty object if access has been denied for all properties
    */
   function filter(resource, document, privilege, asserts) {…}
 
