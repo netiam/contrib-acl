@@ -17,7 +17,7 @@ npm i -S netiam-contrib-acl
 ```js
 netiam()
   .acl.req({acl})
-  .res(…)
+  .rest(…)
   .acl.res({acl})
   .json()
 ```
