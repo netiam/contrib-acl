@@ -37,27 +37,29 @@ adapter you have to implement the following interface.
 ### Example
 
 ```js
-function({asserts = [], transforms = []}) {
+function({asserts = {}, transforms = {}}) {
 
   /**
    * Check access rights on resource level (e.g. API endpoint `POST /users`)
+   * @param {object} user The authenticated user
    * @param {string} resource The resource you want to check access rights
    * @param {string} role Current role of the authenticated user
    * @param {string} privilege The privilege level (either one of `create`, `read`, `update` or `delete`)
    * @returns {Promise<boolean>} Returns `true`, if and only if ACL has a rule which allows access (whitelist)
    */
-  function allowed(resource, role, privilege) {…}
+  function allowed(user, resource, role, privilege) {…}
 
   /**
    * Check access rights on each document attribute and relationship and pluck allowed properties
    * @param {object} document The document you want to filter
+   * @param {object} user The authenticated user
    * @param {string} resource The resource you want to check access rights
    * @param {string} role Current role of the authenticated user
    * @param {string} privilege The privilege level (either one of `create`, `read`, `update` or `delete`)
    * @param {object[]} [asserts=[]] An optional list of assertions (e.g. `owner`)
    * @returns {Promise<object>} Returns a filtered object or an empty object if access has been denied for all properties
    */
-  function filter(document, resource, role, privilege, asserts) {…}
+  function filter(document, user, resource, role, privilege, asserts) {…}
 
   return Object.freeze({
     allowed,
