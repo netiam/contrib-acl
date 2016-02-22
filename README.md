@@ -37,7 +37,7 @@ adapter you have to implement the following interface.
 ### Example
 
 ```js
-function(config) {
+function({asserts = [], transforms = []}) {
 
   /**
    * Check access rights on resource level (e.g. API endpoint `POST /users`)
