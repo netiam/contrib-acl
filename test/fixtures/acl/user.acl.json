@@ -1,0 +1,52 @@
+{
+  "asserts": {
+    "owner": {
+      "ownerField": "owner"
+    }
+  },
+  "transforms": {
+    "owner": {
+      "ownerField": "owner"
+    }
+  },
+  "resource": {
+    "ALLOW": {
+      "ADMIN": "CRUD"
+    }
+  },
+  "attributes": {
+    "*": {
+      "ALLOW": {
+        "ADMIN": "CRUD"
+      },
+      "DENY": {
+        "GUEST": "CRUD"
+      }
+    },
+    "id": {
+      "ALLOW": {
+        "USER": "R",
+        "GUEST": "R"
+      }
+    },
+    "email": {
+      "ALLOW": {
+        "USER": "R"
+      }
+    },
+    "username": {
+      "ALLOW": {
+        "OWNER": "RU",
+        "USER": "R"
+      },
+      "DENY": {
+        "ADMIN": "U"
+      }
+    }
+  },
+  "relationships": {
+    "profile": "profile",
+    "projects": "project",
+    "campaigns": "campaign"
+  }
+}
