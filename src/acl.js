@@ -1,8 +1,12 @@
-function req(req, res) {
+import adapter from './adapters/json'
+
+function req({acl}) {
 }
 
-function res(req, res) {
+function res({acl}) {
 }
+
+export const jsonAdapter = adapter
 
 export default Object.freeze({
   req,
