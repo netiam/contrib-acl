@@ -132,7 +132,7 @@ different role on the actual document.
  * @param {string} role Current role of the authenticated user
  * @param {string} privilege The privilege level (either one of `create`, `read`, `update` or `delete`)
  * @param {object} [...parameters={}]
- * @returns {Promise<boolean>} Returns true, if and only if authenticated user owns document
+ * @returns {Promise<object>} Returns true, if and only if authenticated user owns document
  */
 function owner(document, user, acl, resource, role, privilege, ...parameters) {
   const {ownerField} = parameters
@@ -142,7 +142,7 @@ function owner(document, user, acl, resource, role, privilege, ...parameters) {
     return acl.filter(data, resource, 'OWNER', privilege)
   }
 
-  return {}
+  return Promise.resolve({})
 }
 ```
 
