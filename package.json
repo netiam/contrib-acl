@@ -15,7 +15,11 @@
     "watch": "./bin/watch",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bluebird": "^3.3.1",
+    "glob": "^7.0.0",
+    "lodash": "^4.5.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.2.0",
     "babel-eslint": "^5.0.0",
@@ -26,18 +30,14 @@
     "express": "^4.13.3",
     "istanbul": "0.4.2",
     "mocha": "^2.3.4",
-    "moment": "^2.11.2",
     "netiam": "^7.3.0",
     "netiam-contrib-auth": "^1.0.0",
     "netiam-contrib-data": "^1.0.0",
     "netiam-contrib-json": "^1.0.1",
     "netiam-contrib-transform": "^1.0.1",
     "semantic-release": "4.3.5",
-    "sequelize": "^3.19.1",
     "should": "^8.1.1",
-    "sqlite3": "^3.1.1",
-    "supertest": "1.2.0",
-    "uuid": "^2.0.1"
+    "supertest": "1.2.0"
   },
   "repository": {
     "type": "git",
@@ -52,7 +52,7 @@
     "OData",
     "Library"
   ],
-  "aclor": "Hannes Moser <hannes@impossiblearts.com>",
+  "author": "Hannes Moser <hannes@impossiblearts.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/netiam/contrib-acl/issues"
