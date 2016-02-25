@@ -45,8 +45,23 @@
     }
   },
   "relationships": {
-    "profile": "profile",
-    "projects": "project",
-    "campaigns": "campaign"
+    "profile": {
+      "ALLOW": {
+        "OWNER": "RU",
+        "USER": "R"
+      }
+    },
+    "projects": {
+      "ALLOW": {
+        "OWNER": "RU",
+        "USER": "R"
+      }
+    },
+    "campaigns": {
+      "ALLOW": {
+        "OWNER": "RU",
+        "USER": "R"
+      }
+    }
   }
 }

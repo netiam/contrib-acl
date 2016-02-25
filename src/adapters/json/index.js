@@ -122,7 +122,58 @@ export default function({dir, asserts = {}, transforms = {}}) {
   }
 
   function relationships(document, user, resource, role, privilege) {
+    resource = getResource(resource)
+    if (!resource) {
+      return {}
+    }
 
+    const keys = _.filter(
+      _.keys(document.data.relationships),
+      relationship => {
+        console.log(document.data.relationships)
+        const resourceRelationship = _.get(resource.relationships, relationship, false)
+
+        // MISSING IN ACL
+        if (!resourceRelationship) {
+          return false
+        }
+
+        // WILDCARD DENY
+        if (_.has(resource.relationships, `${WILDCARD}.${DENY}.${role}`)) {
+          const privileges = _.get(resource.relationships, `${WILDCARD}.${DENY}.${role}`)
+          if (privileges.indexOf(privilege) !== -1) {
+            return false
+          }
+        }
+
+        // DENY
+        if (_.has(resourceRelationship, `${DENY}.${role}`)) {
+          const privileges = _.get(resourceRelationship, `${DENY}.${role}`)
+          if (privileges.indexOf(privilege) !== -1) {
+            return false
+          }
+        }
+
+        // WILDCARD ALLOW
+        if (_.has(resource.relationships, `${WILDCARD}.${ALLOW}.${role}`)) {
+          const privileges = _.get(resource.relationships, `${WILDCARD}.${ALLOW}.${role}`)
+          if (privileges.indexOf(privilege) !== -1) {
+            return true
+          }
+        }
+
+        // ALLOW
+        if (_.has(resourceRelationship, `${ALLOW}.${role}`)) {
+          const privileges = _.get(resourceRelationship, `${ALLOW}.${role}`)
+          if (privileges.indexOf(privilege) !== -1) {
+            return true
+          }
+        }
+
+        return false
+      }
+    )
+    return _.pick(document.data.relationships, keys)
   }
 
   function allowed(user, resource, role, privilege) {
@@ -147,7 +198,7 @@ export default function({dir, asserts = {}, transforms = {}}) {
     return initialized
       .then(() => {
         document.data.attributes = attributes(document, user, resource, role, privilege)
-        //document.data.relationships = relationships(document, user, resource, role, privilege)
+        document.data.relationships = relationships(document, user, resource, role, privilege)
       })
       .then(() => Object.freeze(document))
   }
