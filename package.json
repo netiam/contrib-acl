@@ -31,7 +31,7 @@
     "istanbul": "0.4.2",
     "mocha": "^2.3.4",
     "netiam": "^7.3.0",
-    "netiam-contrib-auth": "^1.0.0",
+    "netiam-contrib-auth": "^1.1.0",
     "netiam-contrib-data": "^1.0.0",
     "netiam-contrib-json": "^1.0.1",
     "netiam-contrib-transform": "^1.0.1",
