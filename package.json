@@ -61,5 +61,8 @@
   "engines": {
     "node": ">=5",
     "npm": ">=3"
+  },
+  "publishConfig": {
+    "tag": "next"
   }
 }
