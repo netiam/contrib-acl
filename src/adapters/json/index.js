@@ -130,7 +130,6 @@ export default function({dir, asserts = {}, transforms = {}}) {
     const keys = _.filter(
       _.keys(document.data.relationships),
       relationship => {
-        console.log(document.data.relationships)
         const resourceRelationship = _.get(resource.relationships, relationship, false)
 
         // MISSING IN ACL

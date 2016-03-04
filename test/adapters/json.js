@@ -20,7 +20,6 @@ describe('netiam-contrib', () => {
   it('filter document', done => {
     adapter
       .filter(userFixture, userFixture, 'user', 'USER', PRIV_READ)
-      .then(document => console.log(document))
       .then(() => done())
       .catch(done)
   })
