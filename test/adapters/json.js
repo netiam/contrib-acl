@@ -20,6 +20,12 @@ describe('netiam-contrib', () => {
   it('filter document', done => {
     adapter
       .filter(userFixture, userFixture, 'user', 'USER', PRIV_READ)
+      .then(body => {
+        const data = body.data
+        data.should.be.Object()
+        data.attributes.should.be.Object()
+        data.attributes.should.have.properties(['email', 'username'])
+      })
       .then(() => done())
       .catch(done)
   })
