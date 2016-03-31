@@ -108,6 +108,19 @@ function res({adapter, resource}) {
         }
         return adapter.filter(data, user, data.type, role, PRIV_READ)
       })
+      .then(() => {
+        const included = _.get(res, 'body.included', false)
+        if (!_.isArray(included)) {
+          return
+        }
+        // TODO cross-check relationships
+        return Promise.all(
+          _.map(
+            included,
+            document => adapter.filter(document, user, document.type, role, PRIV_READ)
+          )
+        )
+      })
   }
 }
 
