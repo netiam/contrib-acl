@@ -68,7 +68,8 @@ describe('netiam-contrib', () => {
         resource: 'user'
       })
       acl(req, res)
-        .then(body => {
+        .then(() => {
+          const body = res.body.data
           body.should.have.properties(['type', 'attributes', 'relationships'])
           body.type.should.eql('user')
           body.attributes.should.be.Object().and.empty()
@@ -89,8 +90,8 @@ describe('netiam-contrib', () => {
         resource: 'user'
       })
       acl(req, res)
-        .then(body => {
-
+        .then(() => {
+          const body = res.body.data
           body.should.have.properties(['type', 'attributes', 'relationships'])
           body.type.should.eql('user')
           body.attributes.should.be.Object().and.have.properties([
