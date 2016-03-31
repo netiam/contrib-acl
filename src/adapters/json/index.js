@@ -17,9 +17,8 @@ export default function({dir, asserts = {}, transforms = {}}) {
 
   function init() {
     return new Promise((resolve, reject) => {
-      const root = path.join(process.cwd(), dir)
       glob('**/*.acl.json', {
-        cwd: root,
+        cwd: dir,
         nosort: true,
         realpath: true
       }, (err, files) => {
