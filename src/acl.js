@@ -50,7 +50,6 @@ function req({adapter, resource}) {
     const role = getRole(req)
     const privilege = getPrivilege(req)
 
-    // TODO validate request body to be in JSON API format
     const data = _.get(req, 'body.data', false)
 
     if (!data) {
