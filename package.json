@@ -18,7 +18,8 @@
   "dependencies": {
     "bluebird": "^3.3.3",
     "glob": "^7.0.0",
-    "lodash": "^4.6.1"
+    "lodash": "^4.6.1",
+    "netiam-errors": "^4.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.6.4",
@@ -63,8 +64,5 @@
   "engines": {
     "node": ">=5",
     "npm": ">=3"
-  },
-  "publishConfig": {
-    "tag": "next"
   }
 }

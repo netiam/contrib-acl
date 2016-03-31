@@ -74,7 +74,7 @@ export default function({dir, asserts = {}, transforms = {}}) {
     }
 
     const keys = _.filter(
-      _.keys(document.data.attributes),
+      _.keys(document.attributes),
       attribute => {
         const resourceAttribute = _.get(resource.attributes, attribute, false)
 
@@ -118,7 +118,7 @@ export default function({dir, asserts = {}, transforms = {}}) {
         return false
       }
     )
-    return _.pick(document.data.attributes, keys)
+    return _.pick(document.attributes, keys)
   }
 
   function relationships(document, user, resource, role, privilege) {
@@ -128,7 +128,7 @@ export default function({dir, asserts = {}, transforms = {}}) {
     }
 
     const keys = _.filter(
-      _.keys(document.data.relationships),
+      _.keys(document.relationships),
       relationship => {
         const resourceRelationship = _.get(resource.relationships, relationship, false)
 
@@ -172,7 +172,7 @@ export default function({dir, asserts = {}, transforms = {}}) {
         return false
       }
     )
-    return _.pick(document.data.relationships, keys)
+    return _.pick(document.relationships, keys)
   }
 
   function allowed(user, resource, role, privilege) {
@@ -181,8 +181,31 @@ export default function({dir, asserts = {}, transforms = {}}) {
     assert.ok(role)
     assert.ok(privilege)
 
+    resource = getResource(resource)
+    if (!resource) {
+      return Promise.resolve(false)
+    }
+
     return initialized
-      .then(() => true)
+      .then(() => {
+        // DENY
+        if (_.has(resource.resource, `${DENY}.${role}`)) {
+          const privileges = _.get(resource.resource, `${DENY}.${role}`)
+          if (privileges.indexOf(privilege) !== -1) {
+            return Promise.resolve(false)
+          }
+        }
+
+        // ALLOW
+        if (_.has(resource.resource, `${ALLOW}.${role}`)) {
+          const privileges = _.get(resource.resource, `${ALLOW}.${role}`)
+          if (privileges.indexOf(privilege) !== -1) {
+            return Promise.resolve(true)
+          }
+        }
+
+        return Promise.resolve(false)
+      })
   }
 
   function filter(document, user, resource, role, privilege, asserts = {}) {
@@ -196,8 +219,8 @@ export default function({dir, asserts = {}, transforms = {}}) {
 
     return initialized
       .then(() => {
-        document.data.attributes = attributes(document, user, resource, role, privilege)
-        document.data.relationships = relationships(document, user, resource, role, privilege)
+        document.attributes = attributes(document, user, resource, role, privilege)
+        document.relationships = relationships(document, user, resource, role, privilege)
       })
       .then(() => Object.freeze(document))
   }

@@ -11,7 +11,9 @@
   },
   "resource": {
     "ALLOW": {
-      "ADMIN": "CRUD"
+      "ADMIN": "CRUD",
+      "GUEST": "CR",
+      "USER": "CRU"
     }
   },
   "attributes": {
@@ -21,12 +23,6 @@
       },
       "DENY": {
         "GUEST": "CRUD"
-      }
-    },
-    "id": {
-      "ALLOW": {
-        "USER": "R",
-        "GUEST": "R"
       }
     },
     "email": {
@@ -47,8 +43,7 @@
   "relationships": {
     "profile": {
       "ALLOW": {
-        "OWNER": "RU",
-        "USER": "R"
+        "OWNER": "RU"
       }
     },
     "projects": {
@@ -59,8 +54,7 @@
     },
     "campaigns": {
       "ALLOW": {
-        "OWNER": "RU",
-        "USER": "R"
+        "OWNER": "RU"
       }
     }
   }
