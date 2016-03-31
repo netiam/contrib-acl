@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import User from './models/user'
 import plugin from '../src/acl'
 import jsonAdapter from '../src/adapters/json'
@@ -26,9 +27,9 @@ describe('netiam-contrib', () => {
     it('should allow create request for GUEST', done => {
       const req = {
         method: 'POST',
-        body: userJSONApiFixture
+        body: _.cloneDeep(userJSONApiFixture)
       }
-      const res = {body: userJSONApiFixture}
+      const res = {body: _.cloneDeep(userJSONApiFixture)}
       const acl = plugin.req({
         adapter,
         resource: 'user'
@@ -41,9 +42,9 @@ describe('netiam-contrib', () => {
     it('should deny update request for GUEST', done => {
       const req = {
         method: 'PATCH',
-        body: userJSONApiFixture
+        body: _.cloneDeep(userJSONApiFixture)
       }
-      const res = {body: userJSONApiFixture}
+      const res = {body: _.cloneDeep(userJSONApiFixture)}
       const acl = plugin.req({
         adapter,
         resource: 'user'
@@ -61,7 +62,7 @@ describe('netiam-contrib', () => {
 
     it('filter document for GUEST', done => {
       const req = {method: 'GET'}
-      const res = {body: userJSONApiFixture}
+      const res = {body: _.cloneDeep(userJSONApiFixture)}
       const acl = plugin.res({
         adapter,
         resource: 'user'
@@ -82,13 +83,14 @@ describe('netiam-contrib', () => {
         method: 'GET',
         user: {role: 'USER'}
       }
-      const res = {body: userJSONApiFixture}
+      const res = {body: _.cloneDeep(userJSONApiFixture)}
       const acl = plugin.res({
         adapter,
         resource: 'user'
       })
       acl(req, res)
         .then(body => {
+
           body.should.have.properties(['type', 'attributes', 'relationships'])
           body.type.should.eql('user')
           body.attributes.should.be.Object().and.have.properties([

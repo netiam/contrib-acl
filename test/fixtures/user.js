@@ -1,4 +1,4 @@
-export default Object.freeze({
+export default {
   "data": {
     "id": "50c24ff3-4553-468a-89ae-ca5302ad5413",
     "type": "user",
@@ -38,4 +38,4 @@ export default Object.freeze({
       }
     }
   ]
-})
+}

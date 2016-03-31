@@ -1,8 +1,8 @@
 import nodeFixture from './node'
 
-export default Object.freeze({
+export default {
   data: {
     type: 'node',
     attributes: nodeFixture
   }
-})
+}

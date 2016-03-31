@@ -214,8 +214,6 @@ export default function({dir, asserts = {}, transforms = {}}) {
     assert.ok(role)
     assert.ok(privilege)
 
-    document = _.clone(document)
-
     return initialized
       .then(() => {
         document.attributes = attributes(document, user, resource, role, privilege)
@@ -227,7 +225,7 @@ export default function({dir, asserts = {}, transforms = {}}) {
   function transform(document, user, resource, role, privilege) {
     const transformed = _.map(transforms, (transform, name) => {
       const parameters = getTransformConfig(resource, name)
-      return transform(_.cloneDeep(document), user, this, resource, role, privilege, parameters)
+      return transform(document, user, this, resource, role, privilege, parameters)
     })
     return initialized
       .then(() => Promise.all(transformed))

@@ -1,8 +1,8 @@
 import projectFixture from './project'
 
-export default Object.freeze({
+export default {
   data: {
     type: 'project',
     attributes: projectFixture
   }
-})
+}

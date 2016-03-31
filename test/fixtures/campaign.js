@@ -1,3 +1,3 @@
-export default Object.freeze({
+export default {
   name: 'awesome campaign'
-})
+}

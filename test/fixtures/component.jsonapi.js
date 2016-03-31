@@ -1,8 +1,8 @@
 import componentFixture from './component'
 
-export default Object.freeze({
+export default {
   data: {
     type: 'component',
     attributes: componentFixture
   }
-})
+}

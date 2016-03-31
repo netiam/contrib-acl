@@ -1,8 +1,8 @@
 import campaignFixture from './campaign'
 
-export default Object.freeze({
+export default {
   data: {
     type: 'campaign',
     attributes: campaignFixture
   }
-})
+}

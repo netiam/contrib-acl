@@ -1,7 +1,7 @@
 import userFixture from './user'
 import projectFixture from './project'
 
-export default Object.freeze({
+export default {
   data: {
     type: 'user',
     attributes: userFixture.data.attributes,
@@ -16,4 +16,4 @@ export default Object.freeze({
       }
     }
   }
-})
+}
