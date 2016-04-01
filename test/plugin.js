@@ -82,7 +82,7 @@ describe('netiam-contrib', () => {
     it('filter document for USER', done => {
       const req = {
         method: 'GET',
-        user: {role: 'USER'}
+        user: {role: {name: 'USER'}}
       }
       const res = {body: _.cloneDeep(userJSONApiFixture)}
       const acl = plugin.res({

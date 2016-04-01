@@ -12,19 +12,12 @@ import {
 } from './errors'
 
 function getUser(req) {
-  if (req.user) {
-    return req.user
-  }
-  return {}
+  return _.get(req, 'user', {})
 }
 
-function getRole(req) {
+function getRole(req, path) {
   const user = getUser(req)
-  if (user.role) {
-    return user.role
-  }
-
-  return 'GUEST'
+  return _.get(user, path, 'GUEST')
 }
 
 function getPrivilege(req) {
@@ -47,7 +40,8 @@ function getPrivilege(req) {
 function req({adapter, resource}) {
   return function(req) {
     const user = getUser(req)
-    const role = getRole(req)
+    // TODO configure role access, e.g. set path as config param?
+    const role = getRole(req, 'role.name')
     const privilege = getPrivilege(req)
 
     const data = _.get(req, 'body.data', false)
@@ -83,7 +77,7 @@ function req({adapter, resource}) {
 function res({adapter, resource}) {
   return function(req, res) {
     const user = getUser(req)
-    const role = getRole(req)
+    const role = getRole(req, 'role.name')
 
     const data = _.get(res, 'body.data', false)
     if (!data) {
