@@ -46,7 +46,7 @@ function req({adapter, resource}) {
 
     const data = _.get(req, 'body.data', false)
 
-    if (!data) {
+    if (!data && _.includes([PRIV_CREATE, PRIV_UPDATE], privilege)) {
       return Promise.reject(
         new HTTPError(ACL_EMPTY_BODY)
       )
