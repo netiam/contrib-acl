@@ -104,5 +104,20 @@ describe('netiam-contrib', () => {
         .catch(done)
     })
 
+    it('delete document', done => {
+      const req = {
+        method: 'DELETE',
+        user: {role: {name: 'ADMIN'}}
+      }
+      const res = {}
+      const acl = plugin.req({
+        adapter,
+        resource: 'user'
+      })
+      acl(req, res)
+        .then(() => done())
+        .catch(done)
+    })
+
   })
 })

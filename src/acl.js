@@ -60,6 +60,11 @@ function req({adapter, resource}) {
             new HTTPError(ACL_FORBIDDEN)
           )
         }
+
+        if (!data) {
+          return
+        }
+
         if (_.isArray(data)) {
           return Promise.all(
             _.map(
