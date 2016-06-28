@@ -61,6 +61,7 @@ function req({adapter, resource}) {
           )
         }
 
+        // TODO do we need a better check, if it is in valid JSON API format?
         if (!data) {
           return
         }
@@ -113,6 +114,7 @@ function res({adapter, resource}) {
           return
         }
         // TODO cross-check relationships
+        // TODO I don't get what the TODO comment above is about
         return Promise.all(
           _.map(
             included,
