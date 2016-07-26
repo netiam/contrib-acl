@@ -218,8 +218,8 @@ export default function({dir, asserts = {}, transforms = {}}) {
       .then(() => {
         document.attributes = attributes(document, user, resource, role, privilege)
         document.relationships = relationships(document, user, resource, role, privilege)
+        return document
       })
-      .then(() => Object.freeze(document))
   }
 
   function transform(document, user, resource, role, privilege) {
