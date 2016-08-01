@@ -29,7 +29,7 @@
     "eslint": "^3.1.0",
     "express": "^4.13.3",
     "istanbul": "0.4.4",
-    "mocha": "^2.5.0",
+    "mocha": "^3.0.0",
     "netiam": "^7.3.0",
     "netiam-contrib-auth": "^1.1.0",
     "netiam-contrib-data": "^1.0.0",
